@@ -1,10 +1,7 @@
 import jsonAPI from '../apis/jsonAPI';
 
-export const fetchPosts = async () => {
+export const fetchPosts = () => async (dispath) => {
 	const response = await jsonAPI.get('/posts');
 
-	return {
-		type: 'FETCH_POSTS',
-		payload: response,
-	};
+	dispatch({ type: 'FETCH_POSTS', payload: response });
 };
