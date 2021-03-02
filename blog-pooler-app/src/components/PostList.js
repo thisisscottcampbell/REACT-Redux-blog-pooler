@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
 const PostList = (props) => {
-	const { fetchPosts } = props;
+	const { fetchPosts, posts } = props;
 
+	//cdm
 	useEffect(() => {
 		fetchPosts();
 	}, []);
+
+	//if we have updated state posts data:
+	useEffect(() => {
+		console.log(posts);
+	}, [posts]);
 
 	return (
 		<div>
@@ -16,4 +22,8 @@ const PostList = (props) => {
 	);
 };
 
-export default connect(null, { fetchPosts })(PostList);
+const mapStateToProps = (state) => {
+	return { posts: state.posts };
+};
+
+export default connect(mapStateToProps, { fetchPosts })(PostList);
