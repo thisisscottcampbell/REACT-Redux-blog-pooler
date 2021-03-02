@@ -31,7 +31,7 @@ const PostList = (props) => {
 	return (
 		<div>
 			<h4>i am PostList</h4>
-			<div className="ui relaxed divided list">{() => blogList()}</div>
+			<div className="ui relaxed divided list">{blogList()}</div>
 		</div>
 	);
 };
