@@ -7,7 +7,7 @@ export const fetchPosts = () => async (dispatch) => {
 };
 
 export const fetchUser = (id) => async (dispatch) => {
-	const res = await jsonAPI.get(`/users/${id}`);
+	const response = await jsonAPI.get(`/users/${id}`);
 
-	dispatch({ type: 'FETCH_USER', payload: res.data });
+	dispatch({ type: 'FETCH_USER', payload: response.data });
 };

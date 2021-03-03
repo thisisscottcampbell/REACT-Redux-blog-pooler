@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
+import UserHeader from './UserHeader';
 
 const PostList = (props) => {
 	const { fetchPosts, posts } = props;
@@ -15,6 +16,7 @@ const PostList = (props) => {
 						<h2>{post.title}</h2>
 						<p>{post.body}</p>
 					</div>
+					<UserHeader userId={post.userId} />
 				</div>
 			</div>
 		));
@@ -26,7 +28,6 @@ const PostList = (props) => {
 
 	//if we have updated state posts data:
 	useEffect(() => {
-		console.log(posts);
 		setBlogList(renderBlogs);
 	}, [posts]);
 
