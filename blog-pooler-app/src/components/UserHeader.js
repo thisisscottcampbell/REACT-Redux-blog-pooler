@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
-const UserHeader = ({ userId, users }) => {
-	const [user, setUser] = useState(null);
+const UserHeader = ({ user, fetchUser, userId }) => {
+	//const user = users.find((user) => user.id === userId);
 
 	useEffect(() => {
 		fetchUser(userId);
-		setUser(users.find((user) => user.id === userId));
-	}, [users]);
+	}, []);
 
-	if (user) return <div className="header">{user.name}</div>;
-	return null;
+	if (!user) return null;
+	else return <div className="header">{user.name}</div>;
 };
 
-const mapStateToProps = (state) => {
-	return { users: state.users };
+const mapStateToProps = (state, ownProps) => {
+	return { user: state.users.find((user) => user.id === ownProps.userId) };
+	//return { users: state.users };
 };
 
 export default connect(mapStateToProps, { fetchUser })(UserHeader);
