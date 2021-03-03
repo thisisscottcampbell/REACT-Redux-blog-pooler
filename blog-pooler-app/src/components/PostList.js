@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
 
 const PostList = (props) => {
-	const { fetchPosts, posts } = props;
+	const { fetchPostsAndUsers, posts } = props;
 	const [blogList, setBlogList] = useState([]);
 
 	const renderBlogs = () => {
@@ -23,7 +23,7 @@ const PostList = (props) => {
 	};
 	//cdm
 	useEffect(() => {
-		fetchPosts();
+		fetchPostsAndUsers();
 	}, []);
 
 	//if we have updated state posts data:
@@ -43,4 +43,4 @@ const mapStateToProps = (state) => {
 	return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPostsAndUsers })(PostList);
